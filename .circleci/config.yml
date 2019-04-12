@@ -16,6 +16,5 @@ jobs:
       - run: go build -o weather
       - run: zip weather.zip weather
       - persist_to_workspace:
-            root: ./...
             paths:
                 - weather.zip
