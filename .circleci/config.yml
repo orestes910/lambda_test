@@ -19,6 +19,3 @@ jobs:
         root: ./...
         paths:
           - weather.zip
-
-  deploy:
-    
