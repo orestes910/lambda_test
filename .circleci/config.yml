@@ -29,7 +29,7 @@ jobs:
       - attach_workspace:
           at: /tmp/
       - run: terraform init
-      - run: terraform apply
+      - run: terraform apply -auto-approve
 
 workflows:
     flow:
