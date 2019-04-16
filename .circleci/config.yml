@@ -29,3 +29,11 @@ jobs:
       - attach_workspace:
           at: /tmp/
       - run: terraform apply
+
+workflows:
+    flow:
+        jobs:
+            - build
+            - deploy:
+                requires:
+                    - build
