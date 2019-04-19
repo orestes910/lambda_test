@@ -30,10 +30,6 @@ jobs:
           at: /tmp/
       - run: terraform init
       - run: terraform apply -auto-approve
-      - run: ls -alh
-      - store_artifacts:
-          path: /tmp/terraform.tfstate
-          destination: state 
 
 workflows:
     flow:

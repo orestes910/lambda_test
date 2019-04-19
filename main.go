@@ -60,6 +60,8 @@ func getWeather() (string, error) {
 	var jsonData Weather
 	json.Unmarshal(data, &jsonData)
 
+	fmt.Println(jsonData.Name)
+
 	return fmt.Sprintf("Location: %s", jsonData.Name), nil
 }
 
