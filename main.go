@@ -51,8 +51,8 @@ type Weather struct {
 	Cod  int    `json:"cod"`
 }
 
-func getWeather() (string, error) {
-	resp, respErr := http.Get("http://api.openweathermap.org/data/2.5/weather?zip=80401&APPID=699d450b072c35858db90d31b95e0fc0")
+func getWeather(zip string) (string, error) {
+	resp, respErr := http.Get("http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&APPID=699d450b072c35858db90d31b95e0fc0")
 	if respErr != nil {
 		log.Fatal("Request failed")
 	}
