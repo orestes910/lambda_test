@@ -1,6 +1,28 @@
 provider "aws" {
   region    = "us-east-2"
 }
+backend "s3" {
+    bucket = "tf-state-23948067"
+    key = "weather/terraform.tfstate"
+    dynamodb_table = "weather-state"
+    region = "us-east-2"
+}
+
+resource "aws_s3_bucket" "state-bucket" {
+    bucket = "tf-state-23948067"
+    versioning {
+        enabled = true
+    }
+}
+
+resource "aws_dynamodb_table" "state-table" {
+    name = "weather-state"
+    hash_key = "LockID"
+    attribute {
+        name = "LockID"
+        type = "S"
+    }
+}
 
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
