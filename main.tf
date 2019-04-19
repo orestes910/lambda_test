@@ -1,11 +1,13 @@
 provider "aws" {
   region    = "us-east-2"
 }
-backend "s3" {
-    bucket = "tf-state-23948067"
-    key = "weather/terraform.tfstate"
-    dynamodb_table = "weather-state"
-    region = "us-east-2"
+terraform {
+    backend "s3" {
+        bucket = "tf-state-23948067"
+        key = "weather/terraform.tfstate"
+        dynamodb_table = "weather-state"
+        region = "us-east-2"
+    }
 }
 
 resource "aws_s3_bucket" "state-bucket" {
