@@ -29,8 +29,10 @@ jobs:
       - attach_workspace:
           at: /tmp/
       - run: terraform init
-      - run: terraform plan
       - run: terraform apply -auto-approve
+      - store_artifacts:
+          path: /tmp/terraform.tfstate
+          destination: state 
 
 workflows:
     flow:

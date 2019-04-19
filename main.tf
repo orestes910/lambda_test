@@ -1,7 +1,8 @@
 provider "aws" {
   region    = "us-east-2"
 }
-terraform {
+
+/*terraform {
     backend "s3" {
         bucket = "tf-state-23948067"
         key = "weather/terraform.tfstate"
@@ -9,6 +10,7 @@ terraform {
         region = "us-east-2"
     }
 }
+*/
 
 resource "aws_s3_bucket" "state-bucket" {
     bucket = "tf-state-23948067"
@@ -20,6 +22,8 @@ resource "aws_s3_bucket" "state-bucket" {
 resource "aws_dynamodb_table" "state-table" {
     name = "weather-state"
     hash_key = "LockID"
+    write_capacity = "5"
+    read_capacity = "5"
     attribute {
         name = "LockID"
         type = "S"
