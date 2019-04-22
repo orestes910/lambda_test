@@ -31,6 +31,13 @@ resource "aws_api_gateway_method" "method" {
   api_key_required = true
 }
 
+resource "aws_api_gateway_integration" "integration" {
+  rest_api_id      = "${aws_api_gateway_rest_api.weather_api.id}"
+  resource_id      = "${aws_api_gateway_resource.resource.id}"
+  http_method      = "${aws_api_gateway_method.method.http_method}"
+  type             = "MOCK"
+}
+
 resource "aws_api_gateway_deployment" "deployment" {
   rest_api_id = "${aws_api_gateway_rest_api.weather_api.id}"
   stage_name  = "stage-1"
@@ -87,6 +94,7 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 EOF
 }
+
 
 resource "aws_lambda_permission" "api_gateway" {
   statement_id  = "AllowExecutionFromAPIGateway"
