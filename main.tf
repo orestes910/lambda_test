@@ -64,7 +64,7 @@ resource "aws_api_gateway_api_key" "weather_key" {
 resource "aws_api_gateway_usage_plan_key" "weather_plan_key" {
   key_id        = "${aws_api_gateway_api_key.weather_key.id}"
   key_type      = "API_KEY"
-  usage_plan_id = "${aws_api_gateway_usage_plan.weather_usage_plan}"
+  usage_plan_id = "${aws_api_gateway_usage_plan.weather_usage_plan.id}"
 }
 
 #Roles and Permissions
