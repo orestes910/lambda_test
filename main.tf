@@ -3,17 +3,12 @@ provider "aws" {
   region = "us-east-2"
 }
 
-variable "region" {
-  type = "string"
-  default = "${aws.region}"
-}
-
 terraform {
   backend "s3" {
     bucket         = "tf-state-23948067"
     key            = "weather/terraform.tfstate"
     dynamodb_table = "weather-state"
-    region         = "${var.region}"
+    region         = "us-east-2"
   }
 }
 
@@ -41,7 +36,7 @@ resource "aws_api_gateway_integration" "integration" {
   resource_id = "${aws_api_gateway_resource.resource.id}"
   http_method = "${aws_api_gateway_method.method.http_method}"
   type        = "AWS_PROXY"
-  uri         = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.weather.arn}/invocations"
+  uri         = "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/${aws_lambda_function.weather.arn}/invocations"
 }
 
 resource "aws_api_gateway_deployment" "deployment" {
