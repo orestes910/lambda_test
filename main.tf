@@ -1,11 +1,11 @@
-variable "region" {
-  type = "string"
-  default = "us-east-2"
-}
-
 #AWS
 provider "aws" {
-  region = "${var.region}"
+  region = "us-east-2"
+}
+
+variable "region" {
+  type = "string"
+  default = "${aws.region}"
 }
 
 terraform {
