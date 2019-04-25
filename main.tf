@@ -34,7 +34,7 @@ resource "aws_api_gateway_method" "method" {
 resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = "${aws_api_gateway_rest_api.weather_api.id}"
   resource_id             = "${aws_api_gateway_resource.resource.id}"
-  http_method             = "POST"
+  http_method             = "${aws_api_gateway_method.method.http_method}"
   type                    = "AWS_PROXY"
   integration_http_method = "POST"
   uri                     = "arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/${aws_lambda_function.weather.arn}/invocations"
