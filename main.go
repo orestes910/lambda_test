@@ -80,5 +80,5 @@ func debugFunc(ctx context.Context, request events.APIGatewayProxyRequest) (even
 }
 
 func main() {
-	lambda.Start(debugFunc)
+	lambda.Start(getWeather)
 }
